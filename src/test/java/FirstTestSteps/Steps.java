@@ -114,10 +114,10 @@ public class Steps {
     }
 
     @Then("^user check the form (.*), (.*), (.*), (.*) and (.*)$")
-    public void checkAddress(String alias, String address, String city, String postcode, String phone) {
+    public void checkAddress(String alias, String address, String city, String zip, String phone) {
         String defaultUser = "Jan Nowak";
         String defaultCountry = "United Kingdom";
-        String expectedValue = alias + "\n" + defaultUser + "\n" + address + "\n"  + city + "\n" + postcode + "\n" + defaultCountry + "\n" + phone;
+        String expectedValue = alias + "\n" + defaultUser + "\n" + address + "\n"  + city + "\n" + zip + "\n" + defaultCountry + "\n" + phone;
         String compareValue = driver.findElement(By.className("address-body")).getText();
         Assert.assertEquals(expectedValue, compareValue);
     }

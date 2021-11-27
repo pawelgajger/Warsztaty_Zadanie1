@@ -16,6 +16,7 @@ Feature: AddNewAddress
     And enter in the phone field <phone>
     And click on button save
     Then address successfully added
+    Then user check the form <alias>, <address>, <city>, <zip> and <phone>
     Then delete address
     And address successfully deleted
     And closed browser

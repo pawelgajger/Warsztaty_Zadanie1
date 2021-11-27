@@ -113,9 +113,13 @@ public class Steps {
         Assert.assertEquals("Address successfully added!", successMsg.getText());
     }
 
-    @And("closed browser")
-    public void closeBrowser() {
-        driver.quit();
+    @Then("^user check the form (.*), (.*), (.*), (.*) and (.*)$")
+    public void checkAddress(String alias, String address, String city, String postcode, String phone) {
+        String defaultUser = "Jan Nowak";
+        String defaultCountry = "United Kingdom";
+        String expectedValue = alias + "\n" + defaultUser + "\n" + address + "\n"  + city + "\n" + postcode + "\n" + defaultCountry + "\n" + phone;
+        String compareValue = driver.findElement(By.className("address-body")).getText();
+        Assert.assertEquals(expectedValue, compareValue);
     }
 
     @Then("delete address")
@@ -127,5 +131,10 @@ public class Steps {
     public void checkSuccessfullyDeleted() {
         WebElement successMsg = driver.findElement(By.xpath("//article[@role='alert']"));
         Assert.assertEquals("Address successfully deleted!", successMsg.getText());
+    }
+
+    @And("closed browser")
+    public void closeBrowser() {
+        driver.quit();
     }
 }
